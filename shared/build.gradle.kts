@@ -29,7 +29,7 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            api(projects.model)
+            implementation(projects.domain)
             implementation(libs.kotlinx.coroutinesCore)
             implementation(libs.kotlinx.serialization.core)
             implementation(libs.kotlinx.serialization.json)
@@ -46,6 +46,7 @@ kotlin {
             implementation(libs.napier)
         }
         commonTest.dependencies {
+            implementation(projects.domainmock)
             implementation(libs.kotlin.test)
             implementation(libs.kotlinx.coroutinesTest)
         }

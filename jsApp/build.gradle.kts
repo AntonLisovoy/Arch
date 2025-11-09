@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalDistributionDsl
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
 }
+
 kotlin {
     compilerOptions.optIn.add("kotlin.time.ExperimentalTime")
     compilerOptions.optIn.add("kotlin.js.ExperimentalJsExport")
@@ -21,7 +22,9 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
+            implementation(projects.domain)
             implementation(projects.shared)
+            implementation(projects.memory)
             implementation(libs.kotlinx.coroutinesCore)
             implementation(libs.kodein)
         }

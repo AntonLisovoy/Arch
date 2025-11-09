@@ -1,16 +1,20 @@
 package ru.otus.arch.net
 
 import io.github.aakira.napier.Napier
-import io.ktor.client.*
-import io.ktor.client.plugins.*
-import io.ktor.client.plugins.auth.*
-import io.ktor.client.plugins.auth.providers.*
-import io.ktor.client.plugins.contentnegotiation.*
-import io.ktor.client.request.*
-import io.ktor.serialization.kotlinx.json.*
+import io.ktor.client.HttpClient
+import io.ktor.client.plugins.HttpSend
+import io.ktor.client.plugins.HttpTimeout
+import io.ktor.client.plugins.auth.Auth
+import io.ktor.client.plugins.auth.providers.BasicAuthCredentials
+import io.ktor.client.plugins.auth.providers.basic
+import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.client.plugins.plugin
+import io.ktor.client.request.HttpRequestBuilder
+import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 import ru.otus.arch.Constants
-import ru.otus.arch.net.data.Session
+import ru.otus.arch.domain.session.SessionManager
+import ru.otus.arch.domain.session.data.Session
 
 fun ktorHttpClient(json: Json, sessionManager: SessionManager): HttpClient {
     val client = HttpClient {
@@ -24,7 +28,9 @@ fun ktorHttpClient(json: Json, sessionManager: SessionManager): HttpClient {
         install(Auth) {
             basic {
                 credentials {
-                    (sessionManager.session.value as? Session.Active.Basic)?.credentials
+                    (sessionManager.session.value as? Session.Active.Basic)?.let {
+                        BasicAuthCredentials(it.username, it.password)
+                    }
                 }
                 realm = Constants.Auth.REALM_ADMIN
 

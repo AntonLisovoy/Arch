@@ -5,8 +5,8 @@ import kotlinx.coroutines.launch
 import ru.otus.arch.data.AppData
 import ru.otus.arch.data.AppGesture
 import ru.otus.arch.data.AppUiState
-import ru.otus.arch.net.SessionManager
-import ru.otus.arch.net.data.Session
+import ru.otus.arch.domain.session.SessionManager
+import ru.otus.arch.domain.session.data.Session
 import ru.otus.arch.net.usecase.LoadUsers
 
 internal class UserListState(

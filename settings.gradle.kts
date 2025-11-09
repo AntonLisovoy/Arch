@@ -32,8 +32,14 @@ plugins {
     id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
 }
 
+includeBuild("constgenerator")
+
 include(":composeApp")
 include(":jsApp")
 include(":server")
 include(":shared")
 include(":model")
+include(":domain")
+include(":domainmock")
+include(":memory")
+include(":datastore")

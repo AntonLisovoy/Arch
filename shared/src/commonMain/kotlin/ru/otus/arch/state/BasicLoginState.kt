@@ -1,11 +1,10 @@
 package ru.otus.arch.state
 
-import io.ktor.client.plugins.auth.providers.*
 import kotlinx.coroutines.launch
 import ru.otus.arch.data.AppGesture
 import ru.otus.arch.data.AppUiState
-import ru.otus.arch.net.SessionManager
-import ru.otus.arch.net.data.Session
+import ru.otus.arch.domain.session.SessionManager
+import ru.otus.arch.domain.session.data.Session
 import kotlin.properties.Delegates
 
 internal class BasicLoginState(
@@ -47,7 +46,7 @@ internal class BasicLoginState(
     private fun LoginData.isValid(): Boolean = username.isNotBlank() && password.isNotBlank()
 
     private fun login() = stateScope.launch {
-        sessionManager.login(Session.Active.Basic(BasicAuthCredentials(loginData.username, loginData.password)))
+        sessionManager.login(loginData.username, loginData.password)
         setMachineState(factory.onLogin())
     }
 

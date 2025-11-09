@@ -1,24 +1,18 @@
-package ru.otus.arch.net
+package ru.otus.arch.datastore.session
 
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import ru.otus.arch.net.data.Session
+import ru.otus.arch.domain.session.SessionManager
+import ru.otus.arch.domain.session.data.Session
 
-interface SessionManager {
-    val session: StateFlow<Session>
-    suspend fun login(loginData: Session.Active)
-    suspend fun logout()
-}
-
-class SessionManagerImpl : SessionManager {
-
+class MemorySessionManager : SessionManager {
     private val _loginData = MutableStateFlow<Session>(Session.NONE)
 
     override val session: StateFlow<Session> get() = _loginData.asStateFlow()
 
-    override suspend fun login(loginData: Session.Active) {
-        _loginData.value = loginData
+    override suspend fun login(username: String, password: String) {
+        _loginData.value = Session.Active.Basic(username, password)
     }
 
     override suspend fun logout() {

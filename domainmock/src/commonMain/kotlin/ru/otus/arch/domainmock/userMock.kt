@@ -1,4 +1,4 @@
-package ru.otus.arch.state
+package ru.otus.arch.domainmock
 
 import ru.otus.arch.data.Profile
 import ru.otus.arch.data.User

@@ -5,7 +5,10 @@ import kotlinx.coroutines.flow.stateIn
 import ru.otus.arch.data.AppData
 import ru.otus.arch.data.AppGesture
 import ru.otus.arch.data.AppUiState
-import ru.otus.arch.net.data.Session
+import ru.otus.arch.domain.session.data.Session
+import ru.otus.arch.domainmock.SESSION_BASIC
+import ru.otus.arch.domainmock.USER_1
+import ru.otus.arch.domainmock.USER_2
 import kotlin.test.Test
 
 internal class UserListStateTest : BaseStateTest() {

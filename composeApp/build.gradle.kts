@@ -1,5 +1,6 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import ru.otus.gradle.constgenerator.ConstType
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -8,9 +9,28 @@ plugins {
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.composeHotReload)
     alias(libs.plugins.kotlinSerialization)
+    id("ru.otus.gradle.constgenerator")
+}
+
+val generatedDir: Provider<Directory> = layout.buildDirectory.dir("generated/source/constants")
+
+constGeneratorConfig {
+    outputDir.set(generatedDir)
+    pkgName.set("ru.otus.arch")
+    objName.set("AppConstants")
+    pkgInternal.set(true)
+
+    constants {
+        register("APP_NAME") {
+            type.set(ConstType.STRING)
+            value.set("Arch-compose")
+        }
+    }
 }
 
 kotlin {
+    compilerOptions.freeCompilerArgs.add("-Xexpect-actual-classes")
+
     androidTarget {
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_17)
@@ -35,8 +55,14 @@ kotlin {
             implementation(libs.androidx.activity.compose)
         }
         commonMain.dependencies {
-            implementation(libs.kotlinx.datetime)
+            // Common
+            implementation(projects.domain)
             implementation(projects.shared)
+
+            // Components
+            implementation(projects.datastore)
+
+            implementation(libs.kotlinx.datetime)
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material3)
@@ -46,6 +72,7 @@ kotlin {
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtimeCompose)
             implementation(libs.kodein)
+            implementation(libs.okio)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

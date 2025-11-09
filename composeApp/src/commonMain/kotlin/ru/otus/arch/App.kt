@@ -3,23 +3,22 @@ package ru.otus.arch
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.remember
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.jetbrains.compose.ui.tooling.preview.Preview
-import org.kodein.di.direct
-import org.kodein.di.instance
 import ru.otus.arch.data.AppGesture
 import ru.otus.arch.data.AppUiState
-import ru.otus.arch.di.di
-import ru.otus.arch.ui.*
+import ru.otus.arch.ui.AddUserScreen
+import ru.otus.arch.ui.BackHandler
+import ru.otus.arch.ui.ErrorScreen
+import ru.otus.arch.ui.LoadingScreen
+import ru.otus.arch.ui.LoginScreen
+import ru.otus.arch.ui.ProfileScreen
+import ru.otus.arch.ui.UserListScreen
+import ru.otus.arch.ui.WelcomeScreen
 
 @Composable
 @Preview
-fun App(onTerminated: () -> Unit = { }) {
-    val model = remember {
-        di.direct.instance<Model>()
-    }
-
+fun App(model: Model, onTerminated: () -> Unit = { }) {
     val onBack = { model.process(AppGesture.Back) }
 
     MaterialTheme {

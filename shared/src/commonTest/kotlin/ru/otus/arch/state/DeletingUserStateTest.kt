@@ -3,6 +3,7 @@ package ru.otus.arch.state
 import ru.otus.arch.data.AppData
 import ru.otus.arch.data.AppGesture
 import ru.otus.arch.data.AppUiState
+import ru.otus.arch.domainmock.PROFILE_1
 import kotlin.coroutines.suspendCoroutine
 import kotlin.test.Test
 
