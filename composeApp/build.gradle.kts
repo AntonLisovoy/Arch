@@ -58,6 +58,7 @@ kotlin {
             // Common
             implementation(projects.domain)
             implementation(projects.shared)
+            implementation(projects.network)
 
             // Components
             implementation(projects.datastore)

@@ -1,4 +1,4 @@
-package ru.otus.arch.net
+package ru.otus.arch.network
 
 import io.github.aakira.napier.Napier
 import io.ktor.client.HttpClient

@@ -24,6 +24,7 @@ kotlin {
         commonMain.dependencies {
             implementation(projects.domain)
             implementation(projects.shared)
+            implementation(projects.network)
             implementation(projects.memory)
             implementation(libs.kotlinx.coroutinesCore)
             implementation(libs.kodein)

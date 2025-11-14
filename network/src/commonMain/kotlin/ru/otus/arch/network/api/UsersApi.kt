@@ -1,4 +1,4 @@
-package ru.otus.arch.net
+package ru.otus.arch.network.api
 
 import io.ktor.client.*
 import io.ktor.client.call.*
@@ -6,7 +6,7 @@ import io.ktor.client.request.*
 import io.ktor.http.*
 import ru.otus.arch.data.Profile
 import ru.otus.arch.data.User
-import ru.otus.arch.getPlatform
+import ru.otus.arch.network.getPlatform
 
 internal interface UsersApi {
     suspend fun loadUsers(): List<User>

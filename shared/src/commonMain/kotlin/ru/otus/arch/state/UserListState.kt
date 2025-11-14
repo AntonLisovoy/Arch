@@ -7,7 +7,7 @@ import ru.otus.arch.data.AppGesture
 import ru.otus.arch.data.AppUiState
 import ru.otus.arch.domain.session.SessionManager
 import ru.otus.arch.domain.session.data.Session
-import ru.otus.arch.net.usecase.LoadUsers
+import ru.otus.arch.domain.net.usecase.LoadUsers
 
 internal class UserListState(
     context: AppContext,

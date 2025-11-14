@@ -6,7 +6,7 @@ import ru.otus.arch.data.AppData
 import ru.otus.arch.data.AppGesture
 import ru.otus.arch.data.AppUiState
 import ru.otus.arch.data.Profile
-import ru.otus.arch.net.usecase.LoadUserProfile
+import ru.otus.arch.domain.net.usecase.LoadUserProfile
 
 internal class UserProfileState(
     context: AppContext,

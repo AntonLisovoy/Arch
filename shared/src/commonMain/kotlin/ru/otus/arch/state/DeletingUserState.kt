@@ -4,7 +4,7 @@ import kotlinx.coroutines.launch
 import ru.otus.arch.data.AppData
 import ru.otus.arch.data.AppGesture
 import ru.otus.arch.data.AppUiState
-import ru.otus.arch.net.usecase.DeleteUser
+import ru.otus.arch.domain.net.usecase.DeleteUser
 
 internal class DeletingUserState(
     context: AppContext,
