@@ -42,6 +42,9 @@ internal class LoginState(
             BasicAuthGesture.Back -> {
                 flowHost.onCancel()
             }
+            BasicAuthGesture.ForgotPassword -> {
+                setMachineState(factory.forgotPassword(error))
+            }
             else -> super.doProcess(gesture)
         }
     }
